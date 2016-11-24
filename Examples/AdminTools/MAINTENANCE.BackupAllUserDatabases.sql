@@ -34,7 +34,7 @@ for
 	where sid != 0x01																-- optional: ignore System Databases, e.g. master, model, tempdb, msdb (adjust as needed)
 																		
 
-open crUserDatabases 
+open crUserDatabases
 
 fetch next from crUserDatabases into @DBName
 
