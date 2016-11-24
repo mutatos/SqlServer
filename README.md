@@ -1,1 +1,1 @@
-# SqlServerTools
+SQL Server Sample Scripts
