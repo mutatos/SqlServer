@@ -18,7 +18,7 @@ as
 		return DATEADD(MILLISECOND, @inputMilliseconds, @output)		
 	end
 GO
-
+-- Millis
 create function POSIX.MillisToDateTime(@inputMilliSeconds bigint)
 returns	datetime2(3)
 as
