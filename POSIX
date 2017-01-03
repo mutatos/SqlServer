@@ -1,0 +1,29 @@
+CREATE SCHEMA POSIX
+go
+
+CREATE function POSIX.ToDatetime( @inputSeconds	int)
+returns datetime2(0)
+as
+	begin
+		return DATEADD(SECOND, @inputSeconds, CAST('1970-01-01' as datetime2(0)))
+	end
+GO
+
+
+create function POSIX.ToDatetimeWithMilliSecond( @inputSeconds	bigint, @inputMilliseconds smallint)
+returns datetime2(3)  -- digit precision 3 for optimum memory allocation ( 6 bytes )
+as
+	begin
+		declare @output datetime2(3)	= DATEADD(SECOND, @inputSeconds, CAST('1970-01-01' as datetime2(0)))
+		return DATEADD(MILLISECOND, @inputMilliseconds, @output)		
+	end
+GO
+
+create function POSIX.MillisToDateTime(@inputMilliSeconds bigint)
+returns	datetime2(3)
+as
+	begin
+		declare @output datetime2(3)	= DATEADD(SECOND, cast((@inputMilliSeconds/1000) as int), CAST('1970-01-01' as datetime2(0)))
+		return DATEADD(MILLISECOND, cast((@inputMilliSeconds%1000) as int), @output)		
+	end
+go
